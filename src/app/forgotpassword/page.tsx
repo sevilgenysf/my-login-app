@@ -1,35 +1,32 @@
 "use client";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import Link from "next/link";
 import * as Yup from "yup";
 
-const Login = () => {
+const ForgotPassword = () => {
   const initialValues = {
     email: "",
-    password: "",
   };
 
   const validationSchema = Yup.object({
     email: Yup.string()
       .email("Geçerli bir e-posta adresi giriniz.")
       .required("E-posta zorunludur."),
-    password: Yup.string().required("Şifre zorunludur."),
   });
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      // Giriş işlemi burada yapılabilir
+      // Unutulan şifre sıfırlama işlemi burada yapılabilir
       console.log(values);
     } catch (error) {
-      console.error("Giriş hatası:", error);
+      console.error("Şifre sıfırlama hatası:", error);
     } finally {
       setSubmitting(false);
     }
   };
 
   return (
-    <div className=" bg-white min-h-screen flex items-center justify-center">
+    <div className="bg-white min-h-screen flex items-center justify-center">
       <div className="w-full max-w-md">
         <Formik
           initialValues={initialValues}
@@ -55,34 +52,11 @@ const Login = () => {
             </div>
 
             <div>
-              <div className="flex justify-between">
-                <label htmlFor="password" className="block text-gray-700">
-                  Şifre
-                </label>
-                <Link legacyBehavior href="/forgotpassword">
-                  <a className="text-gray-700 text-base">Şifremi unuttum?</a>
-                </Link>
-              </div>
-
-              <Field
-                type="password"
-                id="password"
-                name="password"
-                className="mt-1 p-2 border rounded w-full text-gray-700"
-              />
-              <ErrorMessage
-                name="password"
-                component="div"
-                className="text-red-600"
-              />
-            </div>
-
-            <div>
               <button
                 type="submit"
                 className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
               >
-                Giriş Yap
+                Şifremi Sıfırla
               </button>
             </div>
           </Form>
@@ -92,4 +66,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;
